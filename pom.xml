@@ -15,8 +15,9 @@
     <name>spring-exampleV2</name>
     <description>spring-exampleV2</description>
     <modules>
-        <module>springboot-api-docV2</module>
-        <module>springdoc-openapi</module>
+        <module>spring-mongo-rest-api</module>
+        <module>spring-boot-api-doc</module>
+        <module>spring-datajpa-postgresql</module>
     </modules>
     <properties>
         <java.version>21</java.version>
