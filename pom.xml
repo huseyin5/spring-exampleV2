@@ -19,6 +19,7 @@
         <module>spring-boot-api-doc</module>
         <module>spring-datajpa-postgresql</module>
         <module>spring-elasticsearch</module>
+        <module>spring-rabbitmq</module>
     </modules>
     <properties>
         <java.version>21</java.version>
