@@ -20,6 +20,7 @@
         <module>spring-datajpa-postgresql</module>
         <module>spring-elasticsearch</module>
         <module>spring-rabbitmq</module>
+        <module>spring-elasticsearchV2</module>
     </modules>
     <properties>
         <java.version>21</java.version>
