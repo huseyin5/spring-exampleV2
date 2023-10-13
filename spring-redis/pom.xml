@@ -9,37 +9,26 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.haydikodlayalim</groupId>
-    <artifactId>spring-exampleV2</artifactId>
+    <artifactId>spring-redis</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>spring-exampleV2</name>
-    <description>spring-exampleV2</description>
-    <modules>
-        <module>spring-mongo-rest-api</module>
-        <module>spring-boot-api-doc</module>
-        <module>spring-datajpa-postgresql</module>
-        <module>spring-elasticsearch</module>
-        <module>spring-rabbitmq</module>
-        <module>spring-aop</module>
-    </modules>
+    <name>spring-redis</name>
+    <description>spring-redis</description>
     <properties>
         <java.version>21</java.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>3.0.0</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
-            <version>5.0.1</version>
         </dependency>
     </dependencies>
 

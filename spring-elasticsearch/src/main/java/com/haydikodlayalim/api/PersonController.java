@@ -19,7 +19,6 @@ import java.util.List;
 public class PersonController {
     private final PersonRepository personRepository;
 
-    @PostConstruct
     public void init() {
         Person person = new Person();
         person.setName("Hüseyin");
