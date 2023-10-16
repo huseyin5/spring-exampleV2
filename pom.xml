@@ -23,6 +23,7 @@
         <module>spring-aop</module>
         <module>springboot-graphql</module>
         <module>spring-rest-template</module>
+        <module>spring-websocket</module>
     </modules>
     <properties>
         <java.version>21</java.version>
