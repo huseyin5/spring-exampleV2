@@ -17,7 +17,7 @@
         function connect() {
             var socket = new SockJS(baseAddress + '/chat');
             stompClient = Stomp.over(socket);
-            stompClient.connect({}, function(frame) {
+            stompClient.connect({}, function (frame) {
                 setConnected(true);
                 console.log('Connected: ' + frame);
                 stompClient.subscribe('/topic', function (message) {
@@ -27,7 +27,7 @@
         }
 
         function disconnect() {
-            if(stompClient != null) {
+            if (stompClient != null) {
                 stompClient.disconnect();
             }
             setConnected(false);
@@ -38,14 +38,14 @@
             var from = document.getElementById('from').value;
             var text = document.getElementById('text').value;
             stompClient.send("/chat", {},
-                JSON.stringify({'sender':from, 'message':text}));
+                JSON.stringify({'sender': from, 'message': text}));
         }
 
         function handleReceivedMessage(message) {
             var response = document.getElementById('response');
             var p = document.createElement('p');
             p.style.wordWrap = 'break-word';
-            p.appendChild(document.createTextNode(message.sender + ": " + message.message ));
+            p.appendChild(document.createTextNode(message.sender + ": " + message.message));
             response.appendChild(p);
         }
     </script>
@@ -55,14 +55,14 @@
     <div>
         <input type="text" id="from" placeholder="Kullanici Adi"/>
     </div>
-    <br />
+    <br/>
     <div>
         <button id="connect" onclick="connect();">Baglan</button>
         <button id="disconnect" disabled="disabled" onclick="disconnect();">
             Cikis
         </button>
     </div>
-    <br />
+    <br/>
     <div id="conversationDiv">
         <input type="text" id="text" placeholder="Mesaj.."/>
         <button id="sendMessage" onclick="sendMessage();">Send</button>
