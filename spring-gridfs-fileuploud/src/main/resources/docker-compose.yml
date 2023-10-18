@@ -1,7 +1,5 @@
 version: '3.1'
 services:
-  mongo:
+  mongo-gridfs:
     image: mongo
-    ports:
-      - '27017:27017'
     command: --serviceExecutor adaptive
