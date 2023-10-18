@@ -29,6 +29,7 @@
         <module>spring-events</module>
         <module>spring-gridfs-fileuploud</module>
         <module>spring-kafka</module>
+        <module>spring-exception-handling</module>
     </modules>
     <properties>
         <java.version>21</java.version>
