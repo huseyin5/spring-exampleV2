@@ -36,7 +36,7 @@ public class WebfluxApplication {
     private Employee generate(int i) {
         return Employee.builder()
                 .name("Name" + i)
-                .lastName(Long.valueOf("Lastname" + i))
+                .lastName("Lastname" + i)
                 .birthDate(LocalDate.now())
                 .build();
     }

@@ -17,6 +17,6 @@ public class Employee {
     @Id
     private String id;
     private String name;
-    private Long lastName;
+    private String lastName;
     private LocalDate birthDate;
 }
