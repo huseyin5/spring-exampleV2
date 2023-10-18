@@ -30,6 +30,7 @@
         <module>spring-gridfs-fileuploud</module>
         <module>spring-kafka</module>
         <module>spring-exception-handling</module>
+        <module>spring-webflux-mongo</module>
     </modules>
     <properties>
         <java.version>21</java.version>
