@@ -2,14 +2,14 @@
 version: '3.1'
 
 services:
-  db:
+  postgres-db:
     image: postgres
     restart: always
     ports:
       - 5432:5432
     environment:
-      POSTGRES_USER: huseyin
-      POSTGRES_PASSWORD: benimSifrem
+      POSTGRES_USER: superAdmin
+      POSTGRES_PASSWORD: superPassword
 
   adminer:
     image: adminer
