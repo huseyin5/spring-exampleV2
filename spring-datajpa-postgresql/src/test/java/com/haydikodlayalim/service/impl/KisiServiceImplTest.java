@@ -1,10 +1,12 @@
 package com.haydikodlayalim.service.impl;
 
 import com.haydikodlayalim.springdatajpapostgresql.dto.KisiDto;
+import com.haydikodlayalim.springdatajpapostgresql.entitiy.Adres;
 import com.haydikodlayalim.springdatajpapostgresql.entitiy.Kisi;
 import com.haydikodlayalim.springdatajpapostgresql.repo.AdresRepository;
 import com.haydikodlayalim.springdatajpapostgresql.repo.KisiRepository;
 import com.haydikodlayalim.springdatajpapostgresql.service.impl.KisiServiceImpl;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
@@ -12,8 +14,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -45,5 +48,33 @@ public class KisiServiceImplTest {
 
         assertEquals(result.getAdi(), kisiDto.getAdi());
         assertEquals(result.getId(), 1L);
+    }
+
+    @Test
+    public void testSaveException() {
+        KisiDto kisiDto = new KisiDto();
+        kisiDto.setSoyadi("Test-Lastname");
+        kisiDto.setAdresler(Arrays.asList("Test-List-1"));
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            kisiService.save(kisiDto);
+        });
+    }
+
+    @Test
+    public void testGetAllWithAddress() {
+        Kisi kisi = new Kisi();
+        kisi.setAdi("Test-Name");
+        kisi.setSoyadi("Test-Lastname");
+
+        Adres ad = new Adres();
+        ad.setAdresTip(Adres.AdresTip.DIGER);
+        ad.setAdres("Test-Adres");
+        kisi.setAdresleri(Collections.singletonList(ad));
+
+        when(kisiRepository.findAll()).thenReturn(Collections.singletonList(kisi));
+        List<KisiDto> kisiDtos = kisiService.getAll();
+
+        assertEquals(kisiDtos.get(0).getAdresler().size(), 1);
     }
 }

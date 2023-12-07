@@ -27,24 +27,26 @@ public class KisiServiceImpl implements KisiService {
     @Transactional
     public KisiDto save(KisiDto kisiDto) {
 
-//        Assert.notNull(kisiDto.getAdi(), "Adi alanı zorunludur!");
-
-        Kisi kisi = new Kisi();
-        kisi.setAdi(kisiDto.getAdi());
-        kisi.setSoyadi(kisiDto.getSoyadi());
-        final Kisi kisiDb = kisiRepository.save(kisi);
-        List<Adres> liste = new ArrayList<>();
-        kisiDto.getAdresler().forEach(item -> {
-            Adres adres = new Adres();
-            adres.setAdres(item);
-            adres.setAdresTip(Adres.AdresTip.DIGER);
-            adres.setAktif(true);
-            adres.setKisi(kisiDb);
-            liste.add(adres);
-        });
-        adresRepository.saveAll(liste);
-        kisiDto.setId(kisiDb.getId());
-        return kisiDto;
+        if (kisiDto.getAdi() == null || kisiDto.getAdi().isEmpty()) {
+            throw new IllegalArgumentException("Adi connat be null or empty");
+        } else {
+            Kisi kisi = new Kisi();
+            kisi.setAdi(kisiDto.getAdi());
+            kisi.setSoyadi(kisiDto.getSoyadi());
+            final Kisi kisiDb = kisiRepository.save(kisi);
+            List<Adres> liste = new ArrayList<>();
+            kisiDto.getAdresler().forEach(item -> {
+                Adres adres = new Adres();
+                adres.setAdres(item);
+                adres.setAdresTip(Adres.AdresTip.DIGER);
+                adres.setAktif(true);
+                adres.setKisi(kisiDb);
+                liste.add(adres);
+            });
+            adresRepository.saveAll(liste);
+            kisiDto.setId(kisiDb.getId());
+            return kisiDto;
+        }
     }
 
     @Override
@@ -62,7 +64,8 @@ public class KisiServiceImpl implements KisiService {
             kisiDto.setId(it.getId());
             kisiDto.setAdi(it.getAdi());
             kisiDto.setSoyadi(it.getSoyadi());
-            kisiDto.setAdresler(it.getAdresleri().stream().map(Adres::getAdres).collect(Collectors.toList()));
+            kisiDto.setAdresler(
+                    it.getAdresleri() != null ? it.getAdresleri().stream().map(Adres::getAdres).collect(Collectors.toList()) : null);
             kisiDtos.add(kisiDto);
         });
         return kisiDtos;
